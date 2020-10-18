@@ -1,3 +1,4 @@
+import os
 import random
 from time import sleep
 import aiohttp
@@ -209,5 +210,5 @@ async def play(ctx: Context, sfx: str):
 async def didyoumean(ctx, search, morelike):
     await ctx.send(f'https://api.alexflipnote.dev/didyoumean?top={search}&bottom={morelike}')
 
-
-bot.run('NzY2ODU0NzE1MTcwMjI2MjE2.X4pbGw.EiTEnAR5n0MAr7Nn-XO2Z5tWeTk')
+# use the TOKEN env var
+bot.run(os.getenv("TOKEN"))
