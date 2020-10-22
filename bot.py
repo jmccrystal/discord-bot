@@ -1,15 +1,17 @@
 import os
 import random
-from time import sleep
 import aiohttp
 import alexflipnote
-
 import discord
+
+from dotenv import load_dotenv
 from discord.ext import commands
 from discord.ext.commands import Context
+from time import sleep
 
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
+load_dotenv()
 
 players = {}
 
@@ -198,7 +200,7 @@ async def play(ctx: Context, sfx: str):
     if voice_channel is not None:
         channel = voice_channel.name
         vc = await voice_channel.connect()
-        vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/bin/ffmpeg.exe", source=path))
+        vc.play(discord.FFmpegPCMAudio(source=path))
         # Sleep while audio is playing.
         while vc.is_playing():
             sleep(.1)
