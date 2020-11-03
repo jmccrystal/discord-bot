@@ -77,7 +77,7 @@ async def help(ctx):
         "a random image of a cat.\nbirb: Displays a random image of a birb.\ndog: Displays a random image of a "
         "dog.\nsupreme [text]: Displays some text in supreme font and color.\nban [member] [reason]: Bans the given "
         "member for the given reason.\nkick [member] [reason]: Kicks the given member for the given reason.\nunban ["
-        "member]: Unbans a given member.\nplay [oof | bruh | augh | slap | coins | coinsrape]: Joins voice channel, plays the given "
+        "member]: Unbans a given member.\nplay [oof | bruh | augh | slap | coins | coinsrape | wtf]: Joins voice channel, plays the given "
         "sound, and leaves.\ndidyoumean [search] [did you mean...]: Displays an image of Google's 'did you mean' "
         "function.```")
 
@@ -186,7 +186,8 @@ async def play(ctx: Context, sfx: str):
         "oof": r"oof.mp3",
         "slap": r"snap.mp3",
         "coins": r"coins.mp3",
-        "coinsrape": r"coinsrape.mp3"
+        "coinsrape": r"coinsrape.mp3",
+        "wtf": r"wtf.mp3"
     }
 
     path = files.get(sfx)
