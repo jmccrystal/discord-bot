@@ -1,12 +1,13 @@
 import os
 import random
-from time import sleep
 import aiohttp
 import alexflipnote
 import discord
-from dotenv import dotenv
+
+from dotenv import load_dotenv
 from discord.ext import commands
 from discord.ext.commands import Context
+from time import sleep
 
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')

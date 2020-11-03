@@ -1,3 +1,4 @@
 aiohttp
 alexflipnote.py
 discord
+python-dotenv
