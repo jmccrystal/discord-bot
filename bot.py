@@ -59,10 +59,14 @@ async def _8ball(ctx, *, question):
 
 @bot.command(aliases=['d', 'delete', 'purge', 'cls'])
 @discord.ext.commands.has_role('Logger')
-async def clear(ctx, amount=5):
+async def clear(ctx, amount=1):
     if amount == 0:
-        await ctx.send("You can't clear zero messages, you silly billy!")
-    await ctx.channel.purge(limit=25)
+        await ctx.send("You can't clear zero messages!")
+        return 1
+    elif amount > 25:
+        await ctx.send("Too many messages to clear!")
+    else:
+        await ctx.channel.purge(amount)
 
 
 @bot.command()
@@ -78,8 +82,8 @@ async def help(ctx):
         "dog.\nsupreme [text]: Displays some text in supreme font and color.\nban [member] [reason]: Bans the given "
         "member for the given reason.\nkick [member] [reason]: Kicks the given member for the given reason.\nunban ["
         "member]: Unbans a given member.\nplay [oof | bruh | augh | slap | coins | coinsrape | wtf]: Joins voice channel, plays the given "
-        "sound, and leaves.\ndidyoumean [search] [did you mean...]: Displays an image of Google's 'did you mean' "
-        "function.```")
+        "sound, and leaves.\ndidyoumean 'search' 'did you mean...': Displays an image of Google's 'did you mean' "
+        "function. Both arguments must be in quotes for it to parse spaces correctly.```")
 
 
 @bot.command(aliases=['bird'])
@@ -187,7 +191,8 @@ async def play(ctx: Context, sfx: str):
         "slap": r"snap.mp3",
         "coins": r"coins.mp3",
         "coinsrape": r"coinsrape.mp3",
-        "wtf": r"wtf.mp3"
+        "wtf": r"wtf.mp3",
+        "alarm": r"morning_flower.mp3"
     }
 
     path = files.get(sfx)
@@ -213,7 +218,9 @@ async def play(ctx: Context, sfx: str):
 
 
 @bot.command()
-async def didyoumean(ctx, search, *, morelike):
+async def didyoumean(ctx, search: str, morelike: str):
+    search = search.replace(" ", "%20")
+    morelike = morelike.replace(" ", "%20")
     await ctx.send(f'https://api.alexflipnote.dev/didyoumean?top={search}&bottom={morelike}')
 
 # use the TOKEN env var
